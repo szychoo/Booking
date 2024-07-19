@@ -69,7 +69,7 @@ namespace Booking.BusinessLogic
             return _mapper.Map<UpdateEventResponse>(@event);
         }
 
-        public async Task<IEnumerable<GetEventBasicResponse>> GetAllEvents(string country = null)
+        public async Task<IEnumerable<GetEventBasicResponse>> GetAllEvents(string? country)
         {
             List<Event> events = null;
 
@@ -79,7 +79,7 @@ namespace Booking.BusinessLogic
                 return _mapper.Map<IEnumerable<GetEventBasicResponse>>(events);
             }
 
-            events = await _unitOfWork.EventsRepository.GetAllEventsByCountryAsync(country);
+            events = await _unitOfWork.EventsRepository.GetAllEventsAsync(x => x.Country == country);
             return _mapper.Map<IEnumerable<GetEventBasicResponse>>(events);
             
         }

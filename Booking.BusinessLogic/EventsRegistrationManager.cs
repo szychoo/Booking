@@ -38,7 +38,7 @@ namespace Booking.BusinessLogic
         public async Task<AddRegistrationResponse?> GetEventRegistration(GetRegistrationRequest request)
         {
             var eventRegistrations = await _unitOfWork.RegistrationsRepository.GetByEventIdAsync(request.EventId);
-            if(eventRegistrations is null)
+            if(!eventRegistrations.Any())
             {
                 return null;
             }

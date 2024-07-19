@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Booking.DataAcess
 {
@@ -22,20 +23,19 @@ namespace Booking.DataAcess
             return await _context.Events.ToListAsync();
         }
 
-        //TODO could improve with predicate to make it generic
-        public async Task<List<Event>> GetAllEventsByCountryAsync(string country)
+        public async Task<List<Event>> GetAllEventsAsync(Expression<Func<Event, bool>> predicate)
         {
-            return await _context.Events.Where(e => e.Country == country).ToListAsync();
+            return await _context.Events.AsNoTracking().Where(predicate).ToListAsync();
         }
 
         public async Task<Event?> GetByNameAsync(string name)
         {
-            return await _context.Events.Where(e => e.Name == name).AsNoTracking().FirstOrDefaultAsync();
+            return await _context.Events.AsNoTracking().Where(e => e.Name == name).FirstOrDefaultAsync();
         }
 
         public async Task<Event?> GetEventByIdAsync(int id)
         {
-            return await _context.Events.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
+            return await _context.Events.AsNoTracking().Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
         public void UpdateEventAsync(Event eventItem)

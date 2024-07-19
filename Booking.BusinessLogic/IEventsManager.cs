@@ -6,7 +6,7 @@ namespace Booking.BusinessLogic
     {
         Task<CreateEventResponse> AddEvent(CreateEventRequest eventItem);
         Task<BaseResponse> DeleteEvent(int id);
-        Task<IEnumerable<GetEventBasicResponse>> GetAllEvents(string country = null);
+        Task<IEnumerable<GetEventBasicResponse>> GetAllEvents(string? country);
         Task<GetEventResponse?> GetEventById(int id);
         Task<UpdateEventResponse> UpdateEvent(UpdateEventRequest updateEventRequest);
     }

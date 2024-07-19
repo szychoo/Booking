@@ -1,4 +1,6 @@
-﻿namespace Booking.DataAcess
+﻿using System.Linq.Expressions;
+
+namespace Booking.DataAcess
 {
     public interface IEventsRepository
     {
@@ -7,7 +9,7 @@
         Task<List<Event>> GetAllEventsAsync();
         Task<Event?> GetEventByIdAsync(int id);
         Task<Event?> GetByNameAsync(string name);
-        Task<List<Event>> GetAllEventsByCountryAsync(string country);
+        Task<List<Event>> GetAllEventsAsync(Expression<Func<Event, bool>> predicate);
         void UpdateEventAsync(Event eventItem);
     }
 }

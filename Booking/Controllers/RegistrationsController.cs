@@ -6,11 +6,11 @@ namespace Booking.Controllers
 {
     [Route("api/Events/{eventId}/[controller]")]
     [ApiController]
-    public class RegistrationController : ControllerBase
+    public class RegistrationsController : ControllerBase
     {
         private readonly IEventsRegistrationManager _eventsRegistrationManager;
 
-        public RegistrationController(IEventsRegistrationManager eventsRegistrationManager)
+        public RegistrationsController(IEventsRegistrationManager eventsRegistrationManager)
         {
             _eventsRegistrationManager = eventsRegistrationManager;
         }
